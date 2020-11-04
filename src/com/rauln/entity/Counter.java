@@ -10,7 +10,7 @@ public class Counter {
     private boolean breakStatus = false;
     private long breakTime;
 
-    public Counter(int id){
+    public Counter(){
         this.id = idCounter++;
     }
 

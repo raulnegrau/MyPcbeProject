@@ -38,6 +38,7 @@ public class Document {
     }
     public void setIntermediateDocumentList(List<Document> intermediateDocumentList){
         this.intermediateDocumentList = intermediateDocumentList;
+        this.documentType = true;
     }
     public void setDocumentState(boolean documentState){
         this.documentState = documentState;
@@ -66,8 +67,35 @@ public class Document {
         return false;
     }
 
+    public void addIntermediatDocuments(List<Document> documents){
+        intermediateDocumentList.addAll(documents);
+    }
+    public void addSubdocumentToDocument(Document document){
+//        this.intermediateDocumentList.add(document);
+    }
+
+    public String getDocumentIfSimple(){
+        String simpleDocumentList = "\n";
+        if(!documentType){
+            simpleDocumentList = simpleDocumentList + getDocumentName();
+        }
+        for (Document document : intermediateDocumentList){
+            simpleDocumentList = simpleDocumentList + document.getDocumentIfSimple();
+        }
+        return simpleDocumentList;
+    }
+
     public String toString(){
-        return documentName;
+        String displayDocumentStructure = "\n";
+        String decor = "";
+        if(!documentType) {
+            decor = "~";
+        }
+        displayDocumentStructure = displayDocumentStructure + decor + getDocumentName();
+        for(Document document : intermediateDocumentList){
+            displayDocumentStructure = displayDocumentStructure + document.toString();
+        }
+        return displayDocumentStructure;
     }
 
 }
