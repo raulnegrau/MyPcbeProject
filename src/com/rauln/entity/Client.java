@@ -12,4 +12,12 @@ public class Client {
         id = idCounter++;
         this.document = document;
     }
+
+    public int getId(){
+        return id;
+    }
+
+    public Document getDocument(){
+        return document;
+    }
 }

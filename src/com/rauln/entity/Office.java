@@ -36,6 +36,22 @@ public class Office {
     }
 
 
+    public int lookForCounter(List<Office> officeList, Document findDocument){
+//        System.out.println("start func");
+        for (Office office : officeList){
+//            System.out.println(" office " + office.getId());
+            for (Document document : office.getDocumentList()){
+//                System.out.println(" office " + office.getId() + "document : " + document.getDocumentName());
+                if(findDocument.getDocumentName().equals(document.getDocumentName()))
+                    return office.getId();
+            }
+        }
+        return -1;
+    }
 
+    // functie asemanatoare cu "semaforul" din curs
+    // verifica daca un counter e in pauza sau nu
+    // daca e in pauza cauta un ccounter disponibil
+    // daca nu e in pauza trimite clientul acolo
 
 }

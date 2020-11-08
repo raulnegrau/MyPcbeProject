@@ -3,7 +3,7 @@ package com.rauln.entity;
 import java.util.Date;
 // un ghiseu intra in pauza numa ce o eliberat un anumit numar de documente
 
-public class Counter {
+public class Counter implements Runnable {
     private int id;
     private static int idCounter = 0;
 
@@ -41,4 +41,9 @@ public class Counter {
 
 
 
+    @Override
+    public void run() {
+        // rezolv concurency
+        // resursa partajata din document: documentType
+    }
 }

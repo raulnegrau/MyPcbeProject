@@ -98,4 +98,17 @@ public class DocumentDatabase {
         return documentList;
     }
 
+    public int mainDocumentCounter(){
+        return files.size();
+    }
+
+    public Document getDocumentById(int index){
+        return files.get(index);
+    }
+
+    public Document cloneDocument(Document document){
+        Document doc = new Document(document.getDocumentName(), document.getIntermediateDocumentList());
+        return doc;
+    }
+
 }
