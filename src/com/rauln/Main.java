@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         DocumentDatabase documentDatabase = new DocumentDatabase();
         List<Document> documentList = documentDatabase.initDocumentDatabaseWithData();
 //        System.out.println(documentDatabase.toString());
@@ -22,8 +22,10 @@ public class Main {
 //        System.out.println(documentDatabase.getAllSimpleDocuments());
 
 
-        OfficeDatabase officeDatabase = new OfficeDatabase();
-        List<Office> officeList = officeDatabase.initOfficeDatabaseWithData();
+//        OfficeDatabase officeDatabase = new OfficeDatabase();
+//        List<Office> officeList = officeDatabase.initOfficeDatabaseWithData();
+//        Office office = officeDatabase.lookForTheRightOfficeToGo(documentList.get(1).getIntermediateDocumentList().get(4).getDocumentName());
+//        System.out.println("Office " + office.getId() + " is the right one!");
 //        System.out.println(officeDatabase.toString());
 
 //
@@ -42,11 +44,14 @@ public class Main {
         int indexDocument;
         int number = documentDatabase.mainDocumentCounter();
         for (int i = 0; i < 10; i++){
+//        while(true){
             indexDocument = (int) (Math.random() * 10 ) % number;
 //            System.out.println(indexDocument);
             client = new Client(documentDatabase.cloneDocument(documentDatabase.getDocumentById(indexDocument)));
-            Counter c = new Counter();
-            thread = new Thread(c, " Client " + client.getId());
+            System.out.println(" Client " + client.getId() + " arrived! He needs : " + client.getDocument().getDocumentName() + "\n");
+            thread = new Thread(client);
+
+
 //            System.out.println("Client " + client.getId() + " wants " + client.getDocument().getDocumentName() + "\n");
             thread.start();
         }
