@@ -43,21 +43,17 @@ public class Main {
         Thread thread;
         int indexDocument;
         int number = documentDatabase.mainDocumentCounter();
-        for (int i = 0; i < 10; i++){
+        OfficeDatabase officeDatabase = new OfficeDatabase();
+        officeDatabase.initOfficeDatabaseWithData();
+        for (int i = 0; i < 5; i++){
 //        while(true){
             indexDocument = (int) (Math.random() * 10 ) % number;
-//            System.out.println(indexDocument);
-            client = new Client(documentDatabase.cloneDocument(documentDatabase.getDocumentById(indexDocument)));
+            client = new Client(documentDatabase.cloneDocument(documentDatabase.getDocumentById(indexDocument)), officeDatabase);
             System.out.println(" Client " + client.getId() + " arrived! He needs : " + client.getDocument().getDocumentName() + "\n");
             thread = new Thread(client);
-
-
 //            System.out.println("Client " + client.getId() + " wants " + client.getDocument().getDocumentName() + "\n");
             thread.start();
         }
-
-        //        officeList.get(1).lookForCounter(officeList, new Document("Cerere tip pensie", null));
-
     }
 }
 

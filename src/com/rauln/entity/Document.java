@@ -48,30 +48,22 @@ public class Document {
     }
 
     public boolean checkDocument() {
-        // true when all anexes are true
-        //boolean otherDocumentsState = true;
         if(intermediateDocumentList.isEmpty()){
             return documentState;
         }
-        //System.out.println("Am trecut de primul if!");
         if(documentState){
             for(Document document : intermediateDocumentList){
                 if(!document.checkDocument()) {
-                    //System.out.println("False in for");
                     return false;
                 }
             }
             return true;
         }
-        //System.out.println("Ultimul return false!");
         return false;
     }
 
     public void addIntermediatDocuments(List<Document> documents){
         intermediateDocumentList.addAll(documents);
-    }
-    public void addSubdocumentToDocument(Document document){
-//        this.intermediateDocumentList.add(document);
     }
 
     public String getDocumentIfSimple(){
